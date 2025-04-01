@@ -1,0 +1,73 @@
+# Build directories
+build/
+cmake-build-*/
+out/
+bin/
+lib/
+
+# CMake files
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+
+# Compiled Object files
+*.o
+*.obj
+*.lo
+*.slo
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Compiled Static libraries
+*.a
+*.la
+*.lai
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# Generated protobuf files
+*.pb.h
+*.pb.cc
+*.pb.cpp
+*.grpc.pb.h
+*.grpc.pb.cc
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+.vs/
+*.vcxproj*
+*.xcodeproj/
+*.xcworkspace/
+
+# OS specific
+.DS_Store
+Thumbs.db
+
+# Dependency directories
+_deps/
+third_party/
+
+# Debug logs
+*.log
+core.*
+core
+vgcore.*
+
+# Project specific
+.cache/

@@ -1,0 +1,66 @@
+syntax = "proto3";
+
+package simple_dfs;
+
+// Service definition
+service DFSService {
+  // Get write lock for a file
+  rpc RequestWriteLock(LockRequest) returns (LockResponse) {}
+  
+  // Store a file to the server
+  rpc StoreFile(FileData) returns (StatusResponse) {}
+  
+  // Fetch a file from the server
+  rpc FetchFile(FileRequest) returns (FileData) {}
+  
+  // List all files on the server
+  rpc ListFiles(Empty) returns (FileList) {}
+}
+
+// Empty message for requests that don't need parameters
+message Empty {
+}
+
+// Request for file operations
+message FileRequest {
+  string filename = 1;
+  string client_id = 2;
+}
+
+// File data for transfer
+message FileData {
+  string filename = 1;
+  bytes data = 2;
+  string client_id = 3;
+  int64 modified_time = 4;
+}
+
+// Status response
+message StatusResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+// Lock request
+message LockRequest {
+  string filename = 1;
+  string client_id = 2;
+}
+
+// Lock response
+message LockResponse {
+  bool granted = 1;
+  string message = 2;
+}
+
+// File information
+message FileInfo {
+  string filename = 1;
+  int64 size = 2;
+  int64 modified_time = 3;
+}
+
+// List of files
+message FileList {
+  repeated FileInfo files = 1;
+}
