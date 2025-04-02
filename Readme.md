@@ -1,12 +1,21 @@
 ## Simple Distributed File System Implementation
 
-This is a very simple distributed file system implementation to help you understand the core concepts. This basic example demonstrates:
+This is a very simple distributed file system to understand the core concepts.
+This basic example demonstrates:
 
 1. A server that maintains files
 2. Clients that maintain local copies
 3. File watching using inotify
 4. Basic synchronization between clients and server
 5. Write locks to prevent conflicts
+
+### Supported Versions and prerequistes
+- g++ : 13.3.0
+- protoc : libprotoc 3.21.12 (installed using apt)
+- gRPC : v1.51.1 (built from source)
+- C++ 17
+- Ubuntu 24.0
+
 
 ### Components
 
