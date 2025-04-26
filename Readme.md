@@ -103,5 +103,3 @@ Clients can synchronize with the server to ensure they have the latest versions 
 
 #### Manual operations:
 - Use fetch and store commands to manually transfer files
-
-This simple example should help you understand the core concepts of the more complex distributed file system you're working on for your assignment.
