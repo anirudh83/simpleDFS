@@ -1,16 +1,19 @@
 CXX = g++
-CXXFLAGS = -std=c++11 -g -Wall
-LDFLAGS = -lgrpc++ -lgrpc -lprotobuf -lpthread
+CXXFLAGS = -std=c++17 -g -Wall -I${HOME}/.local/include -I/usr/local/include \
+           -I${HOME}/.local/include/grpc -I${HOME}/.local/include/grpcpp
+LDFLAGS = -L${HOME}/.local/lib -L/usr/local/lib -lgrpc++ -lgrpc -lprotobuf -lpthread
 
 PROTO_PATH = .
 CPP_OUT = .
+GRPC_CPP_PLUGIN = `which grpc_cpp_plugin`
 
 all: server client
 
 # Generate C++ code from protocol buffers
 proto:
-	protoc -I$(PROTO_PATH) --cpp_out=$(CPP_OUT) --grpc_out=$(CPP_OUT) \
-	--plugin=protoc-gen-grpc=`which grpc_cpp_plugin` $(PROTO_PATH)/simple_dfs.proto
+	protoc -I$(PROTO_PATH) --cpp_out=$(CPP_OUT) \
+	--grpc_out=generate_mock_code=true:$(CPP_OUT) \
+	--plugin=protoc-gen-grpc=$(GRPC_CPP_PLUGIN) $(PROTO_PATH)/simple_dfs.proto
 
 # Compile the server
 server: proto

@@ -1,0 +1,54 @@
+version: '3'
+
+services:
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: dfs-server
+    command: ./simple_dfs_server
+    ports:
+      - "50051:50051"
+    volumes:
+      - server_files:/app/server_files
+    networks:
+      - dfs-network
+
+  client1:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: dfs-client1
+    command: bash -c "sleep 5 && ./simple_dfs_client client_files1"
+    depends_on:
+      - server
+    volumes:
+      - client1_files:/app/client_files1
+    networks:
+      - dfs-network
+    stdin_open: true
+    tty: true
+
+  client2:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: dfs-client2
+    command: bash -c "sleep 5 && ./simple_dfs_client client_files2"
+    depends_on:
+      - server
+    volumes:
+      - client2_files:/app/client_files2
+    networks:
+      - dfs-network
+    stdin_open: true
+    tty: true
+
+volumes:
+  server_files:
+  client1_files:
+  client2_files:
+
+networks:
+  dfs-network:
+    driver: bridge
